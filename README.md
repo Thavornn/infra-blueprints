@@ -18,9 +18,12 @@ If you just cloned this repo onto a fresh Linux machine, follow these steps:
 ### 1. Initialize Docker & Swarm
 Prepare your host machine by running the setup script from the root folder:
 ```bash
+# Grant execution permissions to the core initializer
 chmod +x init-swarm.sh
-./init-swarm.sh
 
+# Run the script to configure GPG keys, repository mirrors, runtimes, and Swarm states
+./init-swarm.sh
+```
 ---
 ### 2. Deploy a Tool
 
@@ -28,10 +31,7 @@ Pick a tool you want to run, navigate to its folder, and follow its local guide:
 ```bash
 cd postgres/
 cp env.example .env   # Set up your local passwords
-
-# Read the local README.md inside that folder to spin it up!
-
----
+```
 ## Ideas: What can you do with this repo
 
 This repo is built to grow. Here is what you can do with this structure as you learn or build new things:
