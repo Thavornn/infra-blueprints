@@ -9,7 +9,7 @@ Think of this repo as a LEGO box for server infrastructure. Instead of manually 
 
 ---
 
-## 🚀 Quick Start: How to use it
+##  Quick Start: How to use it
 
 If you just cloned this repo onto a fresh Linux machine, follow these steps:
 
