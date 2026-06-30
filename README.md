@@ -32,6 +32,17 @@ Pick a tool you want to run, navigate to its folder, and follow its local guide:
 cd postgres/
 cp env.example .env   # Set up your local passwords
 ```
+you have 2 way to deploy the tool
+#### Option 1: Docker Swarm 
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+#### Option 2: Docker Compose 
+```bash
+docker compose up -d    # Standard Docker Compose
+```
+
 ## Ideas: What can you do with this repo
 
 This repo is built to grow. Here is what you can do with this structure as you learn or build new things:
