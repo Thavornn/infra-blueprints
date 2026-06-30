@@ -1,8 +1,6 @@
 # Infra Blueprints
  This repository is a collection of pre-configured, self-contained service templates ready to be deployed instantly.
 
----
-
 Think of this repo as a LEGO box for server infrastructure. Instead of manually installing and configuring databases, web servers, message queues, and other services every time, each component is packaged as a modular, containerized stack using Docker Swarm and Podman—with a structure that's easy to extend to Kubernetes (K8s) or other orchestration and automation tools in the future.
 
 ### 📁 How it's structured:
