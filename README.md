@@ -1,7 +1,7 @@
 # Infra Blueprints
 This repository contains ready-to-deploy infrastructure modules for common server services. Pick the service you need, configure the .env file, and deploy it using Docker Swarm or Docker Compose.
 
-Think of this repo as a LEGO box for server infrastructure. Instead of manually installing and configuring databases, web servers, message queues, and other services every time, each component is packaged as a modular, containerized stack using Docker Swarm and Podman—with a structure that's easy to extend to Kubernetes (K8s) or other orchestration and automation tools in the future.
+Think of this repo as a LEGO box for server infrastructure. Instead of manually installing and configuring databases, web servers, message queues, and other services every time, each component is packaged as a modular, containerized stack using Docker Swarm and Podman. The project structure is designed to be easily extended to Kubernetes (K8s) and other orchestration or automation tools in the future.
 
 ### 📁 How it's structured:
 * **Root Level (`/`):** Contains system initialization scripts (like `init-swarm.sh`) to prepare a fresh Linux machine.
@@ -30,7 +30,7 @@ Pick a tool you want to run, navigate to its folder, and follow its local guide:
 cd postgres/
 cp env.example .env   # Set up your local passwords
 ```
-you have 2 way to deploy the tool
+You can deploy each tool in one of two ways:
 #### Option 1: Docker Swarm 
 ```bash
 chmod +x deploy.sh
@@ -38,15 +38,16 @@ chmod +x deploy.sh
 ```
 #### Option 2: Docker Compose 
 ```bash
-docker compose up -d    # Standard Docker Compose
+docker compose up -d    
 ```
+---
 
-## Ideas: What can you do with this repo
+# What can you do with this repo
 
 This repo is built to grow. Here is what you can do with this structure as you learn or build new things:
 
 - **Spin up dev environments instantly:** Need a quick database for a project? Just jump into `postgres/` or `redis/` and launch it.
-- **Plug in new tools easily:** Learned a new tool (like Prometheus or Grafana)? Just create a new folder, drop a `docker-compose.yml` in it, and your ecosystem expands.
+- **Add new services easily:** Learned a new tool (like Prometheus or Grafana)? Just create a new folder, drop a `docker-compose.yml` in it, and your infrastructure grows.
 - **Upgrade to new technologies:** If you move from Docker Swarm to Kubernetes or Ansible in the future, you can just add a `k8s/` or `ansible/` folder right here without changing the structure.
 
 ```
