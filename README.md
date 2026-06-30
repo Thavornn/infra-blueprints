@@ -1,7 +1,5 @@
 # Infra Blueprints
- This repository is a collection of pre-configured, self-contained service templates ready to be deployed instantly.
-
-"This repo contains ready-to-deploy infrastructure modules. Pick the service you need, configure .env, and deploy it using Docker Swarm or Docker Compose."
+This repository contains ready-to-deploy infrastructure modules for common server services. Pick the service you need, configure the .env file, and deploy it using Docker Swarm or Docker Compose.
 
 Think of this repo as a LEGO box for server infrastructure. Instead of manually installing and configuring databases, web servers, message queues, and other services every time, each component is packaged as a modular, containerized stack using Docker Swarm and Podman—with a structure that's easy to extend to Kubernetes (K8s) or other orchestration and automation tools in the future.
 
