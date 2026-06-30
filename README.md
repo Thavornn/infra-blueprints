@@ -12,6 +12,14 @@ Think of this repo as a LEGO box for server infrastructure. Instead of manually 
 ##  Quick Start: How to use it
 
 If you just cloned this repo onto a fresh Linux machine, follow these steps:
+> ** Note for non-Ubuntu users**
+>
+> - **Ubuntu:** Follow the steps below as-is.
+> - **macOS & Windows:** Do **not** run `init-swarm.sh`. Install Docker Desktop, start it, then initialize Swarm manually:
+>   ```bash
+>   docker swarm init
+>   ```
+> -
 
 ### 1. Initialize Docker & Swarm
 Prepare your host machine by running the setup script from the root folder:
