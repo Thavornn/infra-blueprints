@@ -1,0 +1,10 @@
+services:
+  nginx:
+    image: nginx
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy

@@ -1,0 +1,23 @@
+networks:
+  backend:
+    driver: overlay
+volumes:
+  nginx-cache:
+
+services:
+  nginx:
+    image: nginx:latest
+    networks:
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "${HOST_HTTP_PORT}:80"
+      - "${HOST_HTTPS_PORT}:443"
+    volumes:
+      - ./ssl/:/etc/nginx/ssl
+      - nginx-cache:/var/www:cached
+      - ${LOG_PATH}:/var/log/nginx
+      - ${CONF_PATH}/sites:/etc/nginx/sites
+      - ${CONF_PATH}/conf.d:/etc/nginx/conf.d

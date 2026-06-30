@@ -1,0 +1,47 @@
+#! /usr/bin/bash
+
+set -e
+source ./.env
+
+echo "Creating configuration path at: ${CONF_PATH}"
+mkdir -p "${CONF_PATH}"
+echo "Creating log path at:  ${LOG_PATH}"
+mkdir -p "${LOG_PATH}"
+
+export HOST_HTTP_PORT=${HOST_HTTP_PORT}
+export HOST_HTTPS_PORT=${HOST_HTTPS_PORT}
+export LOG_PATH=${LOG_PATH}
+export CONF_PATH=${CONF_PATH}
+export IMAGE_NAME=${IMAGE_NAME}
+
+cp -rfv conf.d ${CONF_PATH}/.
+cp -rfv sites ${CONF_PATH}/.
+
+DOCKER_COMPOSE_BUILD=docker-compose_build.yml
+DOCKER_COMPOSE_DEPLOY=docker-compose_deploy.yml
+DOCKER_COMPOSE_DEPLOY_TMP=docker-compose_tmp.yml
+
+clear
+echo "[VALIDATING] Build docker compose file"
+docker compose -f ${DOCKER_COMPOSE_BUILD} config
+
+APP_BUILD_NUMBER=$(date +%Y%m%d%H%M)
+IMAGE_NAME="${SERVICE_NAME}:${APP_BUILD_NUMBER}"
+
+echo ""
+echo "[BUILDING] Build the image"
+docker compose --file=${DOCKER_COMPOSE_BUILD} build
+docker tag nginx:latest "${IMAGE_NAME}"
+
+echo ""
+echo "[VALDIATING] Deploy docker compose file"
+rm -rfv $DOCKER_COMPOSE_DEPLOY_TMP
+cat $DOCKER_COMPOSE_DEPLOY | sed -s "s/{SERVICE_NAME}/${SERVICE_NAME}/g" > $DOCKER_COMPOSE_DEPLOY_TMP
+docker compose -f ${DOCKER_COMPOSE_DEPLOY_TMP} config
+
+echo "";
+echo "[DEPLOYING] Deploying the image as service"
+docker stack deploy --with-registry-auth \
+  --detach=true \
+  --resolve-image=always \
+  --compose-file ${DOCKER_COMPOSE_DEPLOY_TMP} common
